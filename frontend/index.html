@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Love You</title>
+  <link rel="shortcut icon" href="https://files.catbox.moe/eq615q.png" type="image/png"/>
+  <style>
+    body {
+      background: #212121;
+      color: white;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .sim {
+      border-radius: 100px;
+      background-color: red;
+      color: white;
+    }
+
+    .nao {
+      position: absolute;
+      border-radius: 100px;
+      background-color: red;
+      color: white;
+    }
+
+    .alerta {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: black;
+      padding: 30px;
+      border-radius: 20px;
+      font-size: 20px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+      display: none;
+      z-index: 10;
+      animation: aparecer 0.4s ease-out;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>OII MÔ, DA PEPETO?🥺🤧</h1>
+  <button class="sim">SIM</button>
+  <button class="nao">NÃO</button>
+
+  <div class="alerta" id="alerta">Finalmente vou poder ver esses peitão gostoso! 😍❤️</div>
+
+  <script>
+    const botaoNao = document.querySelector('.nao');
+    const botaoSim = document.querySelector('.sim');
+    const alerta = document.getElementById('alerta');
+
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      const btnRect = botaoNao.getBoundingClientRect();
+      const offset = 100;
+
+      const distX = mouseX - (btnRect.left + btnRect.width / 2);
+      const distY = mouseY - (btnRect.top + btnRect.height / 2);
+      const distance = Math.sqrt(distX * distX + distY * distY);
+
+      if (distance < offset) {
+        const newX = Math.random() * (window.innerWidth - btnRect.width);
+        const newY = Math.random() * (window.innerHeight - btnRect.height);
+        botaoNao.style.left = `${newX}px`;
+        botaoNao.style.top = `${newY}px`;
+      }
+    });
+
+    botaoSim.addEventListener('click', () => {
+      alerta.style.display = 'block';
+      setTimeout(() => {
+        alerta.style.display = 'none';
+      }, 3000); // esconde depois de 3 segundos
+    });
+  </script>
+</body>
+</html>
